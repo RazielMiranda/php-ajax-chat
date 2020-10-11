@@ -1,6 +1,6 @@
+<?php
 //TODO: FORMAT DATE
 //TODO: CONSTRUCT A CLASS
-<?php
 require '../model/db.php';
 $query = "SELECT * FROM CHAT ORDER BY ID DESC";
 $chatSelect = $chatDB->query($query)->fetchAll();
