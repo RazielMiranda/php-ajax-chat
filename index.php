@@ -1,4 +1,4 @@
-<?php require_once 'model/db.php' ?>
+<?php require_once 'model/db.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP AJAX CHAT SYSTEM</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/main.js"></script>
+    <script>
+        function ajax() {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("chat").innerHTML = this.responseText;
+                    alert("oi");
+                }
+                request.open("GET", "chat.php", true);
+                request.send();
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="ajax();">
     <main id="container">
 
         <section id="chat-box">
-            <?php 
-                $query = "SELECT * FROM CHAT ORDER BY ID DESC";
-                $chatSelect = $chatDB->query($query)->fetchAll();
-                foreach ($chatSelect as $data) {
-            ?>
-            <div id="chat-data">
-                <span style="color: green;"><?=$data['NAME']?>:</span>
-                <span style="color: brown;"><?=$data['MESSAGE']?></span>
-                <span style="float: right;"><?=$data['DATE']?></span>
+            <div id="chat">
+                loading...
             </div>
-            <?php } ?>
         </section>
 
         <form action="index.php" method="post">
@@ -32,26 +38,20 @@
         
         <?php
             if (isset($_POST['send'])) {
-
                 $name = $_POST['name'];
                 $message = $_POST['message'];
-
                 $chatInsert = "INSERT INTO CHAT(ID, NAME, MESSAGE) 
                 VALUES('DEFAULT', '$name', '$message');
                 ";
-
                 $insertMessage = $chatDB->query($chatInsert);
-
                 if ($insertMessage) {
                    echo "
-                   <embed loop ='false' src='assets/sounds/chat.wav' hidden='true' autoplay='true'/>
+                   <embed loop ='false' src='assets/sounds/chat.mp3' hidden='true' autoplay='true'/>
                    ";
                 }
-
             }
         ?>
-
+        
     </main>
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
