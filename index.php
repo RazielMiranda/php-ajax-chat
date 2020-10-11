@@ -1,3 +1,4 @@
+<?php require_once 'model/db.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
     <main id="container">
-        
+
         <section id="chat-box">
             <div id="chat-data">
                 <span style="color: green;">Raziel:</span>
