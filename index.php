@@ -7,21 +7,8 @@
     <title>PHP AJAX CHAT SYSTEM</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <script src="assets/js/main.js"></script>
-    <script>
-        function ajax() {
-            var request = new XMLHttpRequest();
-            request.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("chat").innerHTML = this.responseText;
-                    alert("oi");
-                }
-                request.open("GET", "chat.php", true);
-                request.send();
-            }
-        }
-    </script>
 </head>
-<body onload="ajax();">
+<body onload="getChat();">
     <main id="container">
 
         <section id="chat-box">
@@ -33,7 +20,7 @@
         <form action="index.php" method="post">
             <input type="text" name="name" id="name" placeholder="Enter name">
             <textarea name="message" id="message"></textarea>
-            <input type="submit" name="send" id="send" value="send">
+            <input type="submit" name="send" id="send" value="send"">
         </form>
         
         <?php
@@ -51,7 +38,9 @@
                 }
             }
         ?>
-        
+        <script>
+                setInterval(() => {getChat()}, 1000);
+        </script>
     </main>
 </body>
 </html>
