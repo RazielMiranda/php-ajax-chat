@@ -5,6 +5,7 @@ function getChat() {
             document.getElementById("chat").innerHTML = this.responseText;
         }
     };
-    getChat.open("GET", "chat.php", true);
+    getChat.open("GET", "controller/chat.php", true);
     getChat.send();
 }
+setInterval(() => {getChat()}, 1000);
