@@ -1,4 +1,5 @@
 <?php
+//TODO: CONSTRUCT A CLASS
 $servername = "localhost";
 $username = "root";
 $password = "";
