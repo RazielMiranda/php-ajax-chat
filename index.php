@@ -11,11 +11,17 @@
     <main id="container">
 
         <section id="chat-box">
+            <?php 
+                $query = "SELECT * FROM CHAT ORDER BY ID DESC";
+                $chatData = $chatDB->query($query)->fetchAll();
+                foreach ($chatData as $data) {
+            ?>
             <div id="chat-data">
-                <span style="color: green;">Raziel:</span>
-                <span style="color: brown;">How are you?</span>
-                <span style="float: right;">12:30 PM</span>
+                <span style="color: green;"><?=$data['NAME']?>:</span>
+                <span style="color: brown;"><?=$data['MESSAGE']?></span>
+                <span style="float: right;">1<?=$data['DATE']?></span>
             </div>
+            <?php } ?>
         </section>
 
         <form action="index.php" method="post">
