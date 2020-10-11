@@ -8,6 +8,7 @@
 </head>
 <body>
     <main id="container">
+        
         <section id="chat-box">
             <div id="chat-data">
                 <span style="color: green;">Raziel:</span>
@@ -21,6 +22,7 @@
             <textarea name="message" id="message"></textarea>
             <input type="submit" name="send" id="send" value="send">
         </form>
+
     </main>
     <script src="assets/js/main.js"></script>
 </body>
