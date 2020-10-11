@@ -13,13 +13,13 @@
         <section id="chat-box">
             <?php 
                 $query = "SELECT * FROM CHAT ORDER BY ID DESC";
-                $chatData = $chatDB->query($query)->fetchAll();
-                foreach ($chatData as $data) {
+                $chatSelect = $chatDB->query($query)->fetchAll();
+                foreach ($chatSelect as $data) {
             ?>
             <div id="chat-data">
                 <span style="color: green;"><?=$data['NAME']?>:</span>
                 <span style="color: brown;"><?=$data['MESSAGE']?></span>
-                <span style="float: right;">1<?=$data['DATE']?></span>
+                <span style="float: right;"><?=$data['DATE']?></span>
             </div>
             <?php } ?>
         </section>
@@ -29,6 +29,27 @@
             <textarea name="message" id="message"></textarea>
             <input type="submit" name="send" id="send" value="send">
         </form>
+        
+        <?php
+            if (isset($_POST['send'])) {
+
+                $name = $_POST['name'];
+                $message = $_POST['message'];
+
+                $chatInsert = "INSERT INTO CHAT(ID, NAME, MESSAGE) 
+                VALUES('DEFAULT', '$name', '$message');
+                ";
+
+                $insertMessage = $chatDB->query($chatInsert);
+
+                if ($insertMessage) {
+                   echo "
+                   <embed loop ='false' src='assets/sounds/chat.wav' hidden='true' autoplay='true'/>
+                   ";
+                }
+
+            }
+        ?>
 
     </main>
     <script src="assets/js/main.js"></script>
